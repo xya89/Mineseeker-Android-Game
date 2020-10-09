@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CMPT276Asgn3</string>
+    <string name="found_0_of_8_mines">Found 0 of 8 mines.</string>
+    <string name="scans_used_0">#Scans used: 0</string>
+</resources>
