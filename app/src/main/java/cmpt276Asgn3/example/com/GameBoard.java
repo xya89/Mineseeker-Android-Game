@@ -19,6 +19,8 @@ import Model.Cell;
 
 public class GameBoard extends AppCompatActivity {
 
+
+    // TODO: select size of game board
     private static final int NUM_ROWS = 4;
     private static final int NUM_COLS = 7;
 
@@ -35,7 +37,7 @@ public class GameBoard extends AppCompatActivity {
 
     // Temporary test variables
     private void setMineCells() {
-        cell.setMine(true);
+        cell.setMine();
     }
 
 
