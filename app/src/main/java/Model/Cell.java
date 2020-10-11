@@ -21,6 +21,13 @@ public class Cell {
         return instance;
     }
 
+
+    public Cell(boolean isMine, boolean isRevealed, int mineCount) {
+        this.isMine = isMine;
+        this.isRevealed = isRevealed;
+        this.mineCount = mineCount;
+    }
+
     public void updateCount() {
          mineCount ++ ;
     }
@@ -28,9 +35,7 @@ public class Cell {
     public boolean getIsMine() {
         return isMine;
     }
-    public void setMine(boolean mine) {
-        isMine = mine;
-    }
+    public void setMine() { isMine = true; }
     public boolean getIsRevealed() {
         return isRevealed;
     }
