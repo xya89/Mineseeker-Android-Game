@@ -21,8 +21,8 @@ public class Cell {
         return instance;
     }
 
-    public int updateCount() {
-        return mineCount ++ ;
+    public void updateCount() {
+         mineCount ++ ;
     }
 
     public boolean getIsMine() {
