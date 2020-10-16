@@ -17,6 +17,7 @@ public class OptionActivity extends AppCompatActivity implements AdapterView.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_option);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // populate spinners options
         boardSizeSpinner();
