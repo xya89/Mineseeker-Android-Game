@@ -4,4 +4,7 @@
     <string name="scans_used_0">#Scans used: 0</string>
     <string name="mineseeker">MineSeeker</string>
     <string name="by_neil_sean"><![CDATA[By Neil & Sean]]></string>
+    <string name="help">Help</string>
+    <string name="board_size">Board size</string>
+    <string name="mines"># Mines</string>
 </resources>

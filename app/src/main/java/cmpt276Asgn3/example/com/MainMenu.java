@@ -21,17 +21,22 @@ public class MainMenu extends AppCompatActivity {
 
         registerClickOptions();
 
+        registerClickHelp();
+
 
     }
 
+
     private void registerClickOptions() {
         // TODO: select the board size
+        // TODO: select the number of mines
 
         Button btn = findViewById(R.id.btn_Options);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: select the borad size, three options
+                Intent intent = OptionActivity.makeIntent(MainMenu.this);
+                startActivity(intent);
 
             }
         });
@@ -50,10 +55,20 @@ public class MainMenu extends AppCompatActivity {
         });
     }
 
+    private void registerClickHelp() {
+        Button btn = findViewById(R.id.btn_Help);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = HelpActivity.makeIntent(MainMenu.this);
+                startActivity(intent);
+            }
+        });
+    }
+
 
     public static Intent makeIntent(Context context) {
-        Intent intent = new Intent(context, MainMenu.class);
-        return intent;
+        return new Intent(context, MainMenu.class);
     }
 
 }

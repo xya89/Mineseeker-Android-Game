@@ -24,9 +24,6 @@ public class GameBoard extends AppCompatActivity {
     private static final int NUM_ROWS = 4;
     private static final int NUM_COLS = 7;
 
-
-
-
     private Cell cell = Cell.getInstance();
 
     // TODO: use rand to assign mines: determine if the cell is mine;
