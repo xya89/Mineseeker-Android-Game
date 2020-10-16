@@ -23,6 +23,7 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".GameBoard"
+            android:parentActivityName=".MainMenu"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape" />
         <activity

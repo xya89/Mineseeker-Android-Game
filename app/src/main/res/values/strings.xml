@@ -2,8 +2,8 @@
     <string name="app_name">CMPT276Asgn3</string>
     <string name="found_0_of_8_mines">Found 0 of 8 mines.</string>
     <string name="scans_used_0">#Scans used: 0</string>
-    <string name="mineseeker">MineSeeker</string>
-    <string name="by_neil_sean"><![CDATA[By Neil & Sean]]></string>
+    <string name="mineseeker">Mine Seeker</string>
+    <string name="by_neil_sean"><![CDATA[By Neil Ding, Sean Yang]]></string>
     <string name="help">Help</string>
     <string name="board_size">Board size</string>
     <string name="mines"># Mines</string>
@@ -18,16 +18,25 @@
         \n\t1. a mine! if the slot contains a mine;
         \n\t2. a number! if the slot is not a mine.
         The number indicates the remaining mines in the same row and column of the slot.
-        \nIf a mine is revealed, clicking the mine again will reveal the number of remaining
-        mines int he same row and column as well.
+        \nIf a mine is revealed, clicking the mine again will reveal the number of remaining mines in the same row and column as well.
         \nWhat a nice useless boring application that really shapes and trains our skills!</string>
 
     <string name="game_source_citations">
         The following links are the resources used in this game:
-        \n\t landmine image: <a href="https://rustlabs.com/item/land-mine">
-        https://rustlabs.com/item/land-mine
+        \n\t <a href="https://rustlabs.com/item/land-mine">
+        Land mine image
+        </a>
+        \n\t <a href=
+            "https://assets.gamepur.com/wp-content/uploads/2020/05/06125314/Rust-Musical-Instruments-850x560.jpg">
+        Main menu image
         </a>
     </string>
+    <string name="play">Play</string>
+    <string name="options">Options</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="an_image_of_rust_character_playing_flute">An image of rust character playing flute</string>
+    <string name="skip">Skip</string>
+    <string name="menu">Menu</string>
 
 
 </resources>

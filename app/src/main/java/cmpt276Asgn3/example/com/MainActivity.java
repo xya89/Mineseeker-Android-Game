@@ -16,9 +16,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        // TODO: Add animation in the welcome screen
 
         registerClickMenu();
-
 
 
     }

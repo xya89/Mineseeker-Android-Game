@@ -37,12 +37,11 @@ public class GameBoard extends AppCompatActivity {
         cell.setMine();
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_board);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         populateButtons();
 

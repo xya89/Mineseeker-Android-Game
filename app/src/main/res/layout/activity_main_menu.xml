@@ -8,37 +8,72 @@
 
     <Button
         android:id="@+id/btn_ToGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Play"
+        android:layout_width="245dp"
+        android:layout_height="50dp"
+        android:text="@string/play"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.679"
+        app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.214" />
+        app:layout_constraintVertical_bias="0.304" />
 
     <Button
         android:id="@+id/btn_Options"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Options"
+        android:layout_width="245dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="180dp"
+        android:text="@string/options"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.679"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.443" />
+        app:layout_constraintEnd_toEndOf="@+id/btn_ToGame"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_ToGame"
+        app:layout_constraintTop_toBottomOf="@+id/btn_ToGame"
+        app:layout_constraintVertical_bias="0.041" />
 
     <Button
         android:id="@+id/btn_Help"
+        android:layout_width="245dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/help"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_Options"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_Options"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Options"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txt_mainMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Help"
+        android:text="@string/main_menu"
+        android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.679"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.685" />
+        app:layout_constraintVertical_bias="0.044" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="362dp"
+        android:layout_height="225dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/an_image_of_rust_character_playing_flute"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.833"
+        app:layout_constraintStart_toEndOf="@+id/btn_Options"
+        app:layout_constraintTop_toBottomOf="@+id/txt_mainMenu"
+        app:layout_constraintVertical_bias="0.306"
+        app:srcCompat="@drawable/main_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

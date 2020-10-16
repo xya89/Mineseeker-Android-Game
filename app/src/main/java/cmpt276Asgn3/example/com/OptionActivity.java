@@ -29,7 +29,7 @@ public class OptionActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
     // populate spinners
-    //TODO: Actually funcationalize the spinners
+    //TODO: Actually funcationalize the spinners: use SharePreference to change the gameBoard Size and Num Mines
     private void numberOfMineSpinner() {
         // Number of mines options - spinner
         //*The following code is quoted from https://developer.android.com/guide/topics/ui/controls/spinner
