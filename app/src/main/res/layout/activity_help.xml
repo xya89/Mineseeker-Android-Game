@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/txt_helpTitle"
-        android:layout_width="100dp"
-        android:layout_height="55dp"
+        android:layout_width="82dp"
+        android:layout_height="48dp"
         android:text="@string/help"
         android:textSize="36sp"
         android:textStyle="bold"
@@ -30,7 +30,7 @@
         app:layout_constraintHorizontal_bias="0.19"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.223" />
+        app:layout_constraintVertical_bias="0.174" />
 
     <TextView
         android:id="@+id/txt_gameFunction"
@@ -51,9 +51,9 @@
         android:text="@string/game_source_citations"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/txt_gameFunction"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.01"
         app:layout_constraintStart_toStartOf="@+id/txt_gameFunction"
         app:layout_constraintTop_toBottomOf="@+id/txt_gameFunction"
-        app:layout_constraintVertical_bias="0.195" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
