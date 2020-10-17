@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,16 +21,18 @@ import Model.Cell;
 public class GameBoard extends AppCompatActivity {
 
 
-    // TODO: select size of game board
-    private static final int NUM_ROWS = 4;
-    private static final int NUM_COLS = 7;
+    // TODO: select size of game board - must work with cell table
+    private static final int NUM_ROWS = 5;
+    private static final int NUM_COLS = 10;
+
+    private int testRow = 4;
+    private int testCol = 6;
 
     private Cell cell = Cell.getInstance();
 
     // TODO: use rand to assign mines: determine if the cell is mine;
-    // TODO: upon completion of the previous steps, delete the following codes;
 
-    Button buttons[][] = new Button[NUM_ROWS][NUM_COLS];
+    Button buttons[][] = new Button[testRow][testCol];
 
 
     // Temporary test variables
@@ -43,14 +46,18 @@ public class GameBoard extends AppCompatActivity {
         setContentView(R.layout.activity_game_board);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        populateButtons();
+        int test = OptionActivity.getGameBoardRow(this);
+        Toast.makeText(this, "saved optional row: " + test, Toast.LENGTH_SHORT).show();
+        //testCol = OptionActivity.getGameBoardColumn(this);
+
+        populateButtons(testRow,testCol);
 
     }
 
-    private void populateButtons() {
+    private void populateButtons(int numRow, int numCol) {
         TableLayout table = findViewById(R.id.TBL_gamepad);
 
-        for (int row = 0;  row < NUM_ROWS; row++) {
+        for (int row = 0;  row < numRow; row++) {
             TableRow tableRow = new TableRow(this);
 
             tableRow.setLayoutParams(new TableLayout.LayoutParams(
@@ -59,7 +66,7 @@ public class GameBoard extends AppCompatActivity {
                     1.0f));
             table.addView(tableRow);
 
-            for (int col = 0; col < NUM_COLS; col++){
+            for (int col = 0; col < numCol; col++){
 
                 final int FINAL_COL = col;
                 final int FINAL_ROW = row;
@@ -69,9 +76,6 @@ public class GameBoard extends AppCompatActivity {
                         TableRow.LayoutParams.MATCH_PARENT,
                         TableRow.LayoutParams.MATCH_PARENT,
                         1.0f));
-
-                // delete this
-                button.setText("" + col + "," + row);
 
                 button.setPadding(0,0,0,0);
                 button.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +98,10 @@ public class GameBoard extends AppCompatActivity {
         Button button = buttons[row][col];
 
         // Lock Button Sizes;
-        lockButtonSizes();
+//        testRow = OptionActivity.getGameBoardRow(this);
+//        testCol = OptionActivity.getGameBoardColumn(this);
+
+        lockButtonSizes(testRow, testCol);
 
         // temp functions, delete this
         setMineCells();
@@ -109,6 +116,7 @@ public class GameBoard extends AppCompatActivity {
         }
     }
 
+
     private void showMineImage(Button button) {
         int newWidth = button.getWidth();
         int newHeight = button.getHeight();
@@ -117,10 +125,9 @@ public class GameBoard extends AppCompatActivity {
         Resources resource = getResources();
         button.setBackground(new BitmapDrawable(resource, scaleBitmap));
     }
-
-    private void lockButtonSizes() {
-        for (int row = 0; row < NUM_ROWS; row ++ ) {
-            for (int col = 0; col < NUM_COLS; col ++) {
+    private void lockButtonSizes(int numRow, int numCol) {
+        for (int row = 0; row < numRow; row ++ ) {
+            for (int col = 0; col < numCol; col ++) {
                 Button button = buttons[row][col];
 
                 int width = button.getWidth();
