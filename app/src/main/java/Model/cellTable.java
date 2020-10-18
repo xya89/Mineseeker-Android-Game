@@ -15,9 +15,27 @@ public class cellTable implements Iterable<Cell> {
     private int length;
     private int width;
 
-    public cellTable( int length, int width) {
+    public cellTable( int length, int width,List<Cell> cells) {
+        this.cells = cells;
         this.length = length;
         this.width = width;
+    }
+
+    public List<Cell> getlist(){
+        return cells;
+    }
+
+    public void InitiateMineCount(){
+        for(Cell c:cells){
+            int positionCell = cells.indexOf(c);
+            for( Cell c0:cells){
+                int postionCellOthers = cells.indexOf(c0);
+                if( (positionCell % length == postionCellOthers % length) || (positionCell/width == postionCellOthers/width) ){
+                    c0.updateCount();
+                }
+            }
+
+        }
     }
 
     public void generateCell(){
@@ -32,17 +50,18 @@ public class cellTable implements Iterable<Cell> {
         int[] randArray = new int[8];
         for(int i = 0;i<8;i++){
             randArray[i] = rand.nextInt(length*width);
+            cells.get(randArray[i]).setMine();
         }
-        for( int j = 0; j< length*width; j++ ){
+       /* for( int j = 0; j< length*width; j++ ){
             if (Arrays.asList(randArray).contains(j)) {
                 cells.get(j).setMine();
             }
 
-        }
+        }*/
     }
 
 
-    public void updateCount(Cell c0){
+    public void updateMineCount(Cell c0){
         int positionClick  = cells.indexOf(c0);
         for( Cell c1 : cells ){
             int positionCell = cells.indexOf(c1);

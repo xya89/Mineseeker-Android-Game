@@ -10,13 +10,19 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import Model.Cell;
+import Model.cellTable;
 
 public class GameBoard extends AppCompatActivity {
 
@@ -35,10 +41,20 @@ public class GameBoard extends AppCompatActivity {
     Button buttons[][] = new Button[testRow][testCol];
 
 
-    // Temporary test variables
-    private void setMineCells() {
-        cell.setMine();
+    //create cellTable separately, which generates cells and mines.
+    private cellTable setCells(int numCol, int numRow) {
+        cellTable tableList = new cellTable(numCol, numRow, new ArrayList<Cell>());
+        tableList.generateCell();
+        tableList.generateMine();
+        return tableList;
     }
+
+
+
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +63,22 @@ public class GameBoard extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         int test = OptionActivity.getGameBoardRow(this);
+        //testCelltable();
         Toast.makeText(this, "saved optional row: " + test, Toast.LENGTH_SHORT).show();
         //testCol = OptionActivity.getGameBoardColumn(this);
+
 
         populateButtons(testRow,testCol);
 
     }
 
-    private void populateButtons(int numRow, int numCol) {
+    private void populateButtons(int numRow, final int numCol) {
+
         TableLayout table = findViewById(R.id.TBL_gamepad);
+
+        final cellTable t2 = setCells(numCol,numRow);
+
+
 
         for (int row = 0;  row < numRow; row++) {
             TableRow tableRow = new TableRow(this);
@@ -68,35 +91,42 @@ public class GameBoard extends AppCompatActivity {
 
             for (int col = 0; col < numCol; col++){
 
+
                 final int FINAL_COL = col;
                 final int FINAL_ROW = row;
 
-                Button button = new Button(this);
+                final Button button = new Button(this);
                 button.setLayoutParams(new TableRow.LayoutParams(
                         TableRow.LayoutParams.MATCH_PARENT,
                         TableRow.LayoutParams.MATCH_PARENT,
                         1.0f));
 
                 button.setPadding(0,0,0,0);
+
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        gridButtonClicked(FINAL_COL, FINAL_ROW);
+                        gridButtonClicked(FINAL_COL,FINAL_ROW, FINAL_ROW*numCol+FINAL_COL,t2);
 
                     }
                 });
 
                 tableRow.addView(button);
                 buttons[row][col] = button;
+
             }
         }
     }
 
-    private void gridButtonClicked(int col, int row) {
+    private void gridButtonClicked(int col, int row, int index,cellTable c1) {
         Toast.makeText(this, "Button clicked: " + col + "," + row, Toast.LENGTH_SHORT).show();
 
         Button button = buttons[row][col];
-
+        //cell button becomes an image of mine when clicking mine button.
+        if(c1.getlist().get(index).getIsMine()){
+            showMineImage(button);
+        }
+        c1.updateMineCount(c1.getlist().get(index));
         // Lock Button Sizes;
 //        testRow = OptionActivity.getGameBoardRow(this);
 //        testCol = OptionActivity.getGameBoardColumn(this);
@@ -104,7 +134,7 @@ public class GameBoard extends AppCompatActivity {
         lockButtonSizes(testRow, testCol);
 
         // temp functions, delete this
-        setMineCells();
+        /*setMineCells();
 
         if (cell.getIsMine()){
             // TODO: cell button becomes a image of mine
@@ -113,7 +143,7 @@ public class GameBoard extends AppCompatActivity {
         }
         else if (!cell.getIsMine()){
             // TODO: cell button display number of mines left in the same row and same col.
-        }
+        }*/
     }
 
 
