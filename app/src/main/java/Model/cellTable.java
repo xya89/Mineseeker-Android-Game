@@ -1,6 +1,7 @@
 package Model;
 
 import android.opengl.ETC1;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -30,7 +31,7 @@ public class cellTable implements Iterable<Cell> {
             int positionCell = cells.indexOf(c);
             for( Cell c0:cells){
                 int postionCellOthers = cells.indexOf(c0);
-                if( (positionCell % length == postionCellOthers % length) || (positionCell/width == postionCellOthers/width) ){
+                if( (positionCell % length == postionCellOthers % length) || (positionCell/length == postionCellOthers/length) ){
                     if(c0.getIsMine()){c.updateCount();}
                 }
             }
@@ -47,17 +48,20 @@ public class cellTable implements Iterable<Cell> {
     }
     public void generateMine(int mineNum){
         Random rand = new Random();
+        //generate a array which contains all the randomly chosen mines' position index.
         int[] randArray = new int[mineNum];
         for(int i = 0;i<mineNum;i++){
-            randArray[i] = rand.nextInt(length*width);
+            int randN =  rand.nextInt(length*width);
+            /* check whether generated randN exists in array and if does, while loop will generate
+            a new randN until the new randN never presents. */
+            while(searchArr(randArray,randN)){
+                randN = rand.nextInt(length*width);
+;            }
+            randArray[i] = randN;
+            Log.d("rand is ", Integer.toString(randArray[i]));
             cells.get(randArray[i]).setMine();
         }
-       /* for( int j = 0; j< length*width; j++ ){
-            if (Arrays.asList(randArray).contains(j)) {
-                cells.get(j).setMine();
-            }
 
-        }*/
     }
 
 
@@ -77,4 +81,16 @@ public class cellTable implements Iterable<Cell> {
     public Iterator<Cell> iterator() {
         return null;
     }
+    //determine whether an integer is in an array.
+    public boolean searchArr(int[] arr, int k){
+        boolean flag = false;
+        for(int j:arr){
+            if (k == j) {
+                flag = true;
+                break;
+            }
+        }
+        return flag;
+    }
+
 }

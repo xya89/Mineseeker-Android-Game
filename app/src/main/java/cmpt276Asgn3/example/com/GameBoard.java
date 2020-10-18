@@ -32,8 +32,8 @@ public class GameBoard extends AppCompatActivity {
     private static final int NUM_ROWS = 5;
     private static final int NUM_COLS = 10;
 
-    private int testRow = 3;
-    private int testCol = 3;
+    private int testRow = 4;
+    private int testCol = 6;
 
     private Cell cell = Cell.getInstance();
 
@@ -46,7 +46,7 @@ public class GameBoard extends AppCompatActivity {
     private cellTable setCells(int numCol, int numRow) {
         cellTable tableList = new cellTable(numCol, numRow, new ArrayList<Cell>());
         tableList.generateCell();
-        tableList.generateMine(2);
+        tableList.generateMine(8);
         tableList.InitiateMineCount();
         return tableList;
     }
