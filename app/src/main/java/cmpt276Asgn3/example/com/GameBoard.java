@@ -2,6 +2,7 @@ package cmpt276Asgn3.example.com;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,8 +32,8 @@ public class GameBoard extends AppCompatActivity {
     private static final int NUM_ROWS = 5;
     private static final int NUM_COLS = 10;
 
-    private int testRow = 4;
-    private int testCol = 6;
+    private int testRow = 3;
+    private int testCol = 3;
 
     private Cell cell = Cell.getInstance();
 
@@ -45,7 +46,8 @@ public class GameBoard extends AppCompatActivity {
     private cellTable setCells(int numCol, int numRow) {
         cellTable tableList = new cellTable(numCol, numRow, new ArrayList<Cell>());
         tableList.generateCell();
-        tableList.generateMine();
+        tableList.generateMine(2);
+        tableList.InitiateMineCount();
         return tableList;
     }
 
@@ -118,7 +120,8 @@ public class GameBoard extends AppCompatActivity {
         }
     }
 
-    private void gridButtonClicked(int col, int row, int index,cellTable c1) {
+    @SuppressLint("SetTextI18n")
+    private void gridButtonClicked(int col, int row, int index, cellTable c1) {
         Toast.makeText(this, "Button clicked: " + col + "," + row, Toast.LENGTH_SHORT).show();
 
         Button button = buttons[row][col];
@@ -126,7 +129,10 @@ public class GameBoard extends AppCompatActivity {
         if(c1.getlist().get(index).getIsMine()){
             showMineImage(button);
         }
-        c1.updateMineCount(c1.getlist().get(index));
+        else{
+            button.setText(Integer.toString(c1.getlist().get(index).getCount()));
+        }
+
         // Lock Button Sizes;
 //        testRow = OptionActivity.getGameBoardRow(this);
 //        testCol = OptionActivity.getGameBoardColumn(this);

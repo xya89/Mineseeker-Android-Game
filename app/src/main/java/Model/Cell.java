@@ -42,4 +42,7 @@ public class Cell {
     public void setRevealed(boolean revealed) {
         isRevealed = revealed;
     }
+    public int getCount(){
+        return mineCount;
+    }
 }

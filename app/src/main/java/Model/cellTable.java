@@ -31,7 +31,7 @@ public class cellTable implements Iterable<Cell> {
             for( Cell c0:cells){
                 int postionCellOthers = cells.indexOf(c0);
                 if( (positionCell % length == postionCellOthers % length) || (positionCell/width == postionCellOthers/width) ){
-                    c0.updateCount();
+                    if(c0.getIsMine()){c.updateCount();}
                 }
             }
 
@@ -45,10 +45,10 @@ public class cellTable implements Iterable<Cell> {
             cells.add(c1);
         }
     }
-    public void generateMine(){
+    public void generateMine(int mineNum){
         Random rand = new Random();
-        int[] randArray = new int[8];
-        for(int i = 0;i<8;i++){
+        int[] randArray = new int[mineNum];
+        for(int i = 0;i<mineNum;i++){
             randArray[i] = rand.nextInt(length*width);
             cells.get(randArray[i]).setMine();
         }
