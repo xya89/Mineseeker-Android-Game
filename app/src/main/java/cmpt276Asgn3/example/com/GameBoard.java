@@ -121,16 +121,23 @@ public class GameBoard extends AppCompatActivity {
         Button button = buttons[row][col];
         //cell button becomes an image of mine when clicking mine button.
         if(c1.getlist().get(index).getIsMine()){
-            showMineImage(button);
+            if(!c1.getlist().get(index).getIsRevealed()) {
 
-            foundMines ++;
-            updateFoundMines(foundMines);
+
+                showMineImage(button);
+                c1.getlist().get(index).setRevealed(true);
+                foundMines++;
+                updateFoundMines(foundMines);
+            }
         }
         else{
-            button.setText(Integer.toString(c1.getlist().get(index).getCount()));
+            if(!c1.getlist().get(index).getIsRevealed()) {
+                c1.getlist().get(index).setRevealed(true);
+                button.setText(Integer.toString(c1.getlist().get(index).getCount()));
 
-            timeScan++;
-            updateScansUsed(timeScan);
+                timeScan++;
+                updateScansUsed(timeScan);
+            }
         }
 
         lockButtonSizes(testRow, testCol);
