@@ -31,6 +31,7 @@ public class Cell {
     public void updateCount() {
          mineCount ++ ;
     }
+    public void decreaseCount(){mineCount -- ; }
 
     public boolean getIsMine() {
         return isMine;

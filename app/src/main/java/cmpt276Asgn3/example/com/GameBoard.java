@@ -130,6 +130,15 @@ public class GameBoard extends AppCompatActivity {
                 c1.getlist().get(index).setRevealed(true);
                 foundMines++;
                 updateFoundMines(foundMines);
+                c1.updateMineCount(c1.getlist().get(index));
+                for(Cell cell2 : c1){
+                    if(cell2.getIsRevealed()){
+                        int positionCell = c1.getlist().indexOf(cell2);
+                        buttons[positionCell][]
+                    }
+                }
+
+
             }
         }
         else{

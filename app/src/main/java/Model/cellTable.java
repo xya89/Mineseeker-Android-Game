@@ -71,7 +71,7 @@ public class cellTable implements Iterable<Cell> {
         for( Cell c1 : cells ){
             int positionCell = cells.indexOf(c1);
             if( (positionCell % length == positionClick % length) || (positionCell/width == positionClick/width) ){
-                c1.updateCount();
+                c1.decreaseCount();
             }
         }
     }
