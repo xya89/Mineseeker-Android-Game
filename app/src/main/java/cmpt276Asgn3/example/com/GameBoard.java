@@ -37,7 +37,8 @@ public class GameBoard extends AppCompatActivity {
 
     private int timeScan = 0;
     private int foundMines = 0;
-    // TODO: use rand to assign mines: determine if the cell is mine;
+
+
 
     Button buttons[][] = new Button[testRow][testCol];
 
@@ -61,7 +62,7 @@ public class GameBoard extends AppCompatActivity {
 
         int test = OptionActivity.getGameBoardRow(this);
         //testCelltable();
-        Toast.makeText(this, "saved optional row: " + test, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "hello " + test, Toast.LENGTH_SHORT).show();
         //testCol = OptionActivity.getGameBoardColumn(this);
 
         // set messages for "Found %d of %d mines."
@@ -69,7 +70,6 @@ public class GameBoard extends AppCompatActivity {
         tvTotalMines.setText(Integer.toString(OptionActivity.getNumMineSet(this)));
 
         populateButtons(testRow,testCol);
-
     }
 
     private void populateButtons(int numRow, final int numCol) {
@@ -141,6 +141,9 @@ public class GameBoard extends AppCompatActivity {
         }
 
         lockButtonSizes(testRow, testCol);
+        if(foundMines ==OptionActivity.getNumMineSet(this)){
+            Toast.makeText(this, "you win!" + foundMines, Toast.LENGTH_SHORT).show();
+        }
 
     }
 
