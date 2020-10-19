@@ -29,6 +29,7 @@ public class GameBoard extends AppCompatActivity {
     private static final int NUM_ROWS = 5;
     private static final int NUM_COLS = 10;
 
+
     private int testRow = 4;
     private int testCol = 6;
 
