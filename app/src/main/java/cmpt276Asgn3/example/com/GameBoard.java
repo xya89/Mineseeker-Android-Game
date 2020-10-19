@@ -42,7 +42,7 @@ public class GameBoard extends AppCompatActivity {
 
 
 
-    Button buttons[][] = new Button[testRow][testCol];
+    Button buttons[][] ;
 
 
     //create cellTable separately, which generates cells and mines.
@@ -62,6 +62,7 @@ public class GameBoard extends AppCompatActivity {
         setContentView(R.layout.activity_game_board);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        buttons = new Button[OptionActivity.getGameBoardRow(this)][OptionActivity.getGameBoardColumn(this)];
         int test = OptionActivity.getGameBoardRow(this);
         //testCelltable();
         Toast.makeText(this, "hello " + test, Toast.LENGTH_SHORT).show();
@@ -71,7 +72,7 @@ public class GameBoard extends AppCompatActivity {
         TextView tvTotalMines = findViewById(R.id.txt_numMines);
         tvTotalMines.setText(Integer.toString(OptionActivity.getNumMineSet(this)));
 
-        populateButtons(testRow,testCol);
+        populateButtons(OptionActivity.getGameBoardRow(this),OptionActivity.getGameBoardColumn(this));
     }
 
     private void populateButtons(int numRow, final int numCol) {
@@ -202,10 +203,10 @@ public class GameBoard extends AppCompatActivity {
         return new Intent(context, GameBoard.class);
     }
     public void showDialog(){
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Game Over");
-        alert.setMessage("Congratulations! You won!");
-        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Game Over");
+        dialog.setMessage("Congratulations! You won!");
+        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Intent intent = MainMenu.makeIntent(GameBoard.this);
@@ -215,6 +216,6 @@ public class GameBoard extends AppCompatActivity {
 
 
         });
-        alert.create().show();
+        dialog.create().show();
     }
 }
