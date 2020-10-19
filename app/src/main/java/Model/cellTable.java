@@ -46,6 +46,7 @@ public class cellTable implements Iterable<Cell> {
             cells.add(c1);
         }
     }
+
     public void generateMine(int mineNum){
         Random rand = new Random();
         //generate a array which contains all the randomly chosen mines' position index.
@@ -56,7 +57,7 @@ public class cellTable implements Iterable<Cell> {
             a new randN until the new randN never presents. */
             while(searchArr(randArray,randN)){
                 randN = rand.nextInt(length*width);
-;            }
+            }
             randArray[i] = randN;
             Log.d("rand is ", Integer.toString(randArray[i]));
             cells.get(randArray[i]).setMine();

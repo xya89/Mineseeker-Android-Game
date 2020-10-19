@@ -12,53 +12,107 @@
         android:layout_height="287dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_remainingMines"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
 
 
     </TableLayout>
-
-    <TextView
-        android:id="@+id/txt_remainingMines"
-        android:layout_width="157dp"
-        android:layout_height="25dp"
-        android:text="@string/found_0_of_8_mines"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintHorizontal_bias="0.186"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.007" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="291dp" />
+        app:layout_constraintGuide_end="418dp" />
 
     <TextView
         android:id="@+id/txtdisplayScan"
-        android:layout_width="109dp"
-        android:layout_height="21dp"
+        android:layout_width="89dp"
+        android:layout_height="20dp"
         android:layout_marginStart="292dp"
         android:layout_marginLeft="292dp"
         android:layout_marginTop="8dp"
-        android:text="@string/scans_used_0"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_remainingMines"
+        android:text="@string/scans_used"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.82"
+        app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/txt_remainingMines"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_scanCount"
+        android:layout_width="28dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/_0"
+        app:layout_constraintBottom_toBottomOf="@+id/txtdisplayScan"
+        app:layout_constraintStart_toEndOf="@+id/txtdisplayScan"
+        app:layout_constraintTop_toTopOf="@+id/txtdisplayScan"
         app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/txt_findMineMsg1"
+        android:layout_width="27dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/find"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_foundMinesCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:text="@string/_0_foundMines"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_findMineMsg1"
+        app:layout_constraintStart_toEndOf="@+id/txt_findMineMsg1"
+        app:layout_constraintTop_toTopOf="@+id/txt_findMineMsg1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txtCoundMsg2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:text="@string/of"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_foundMinesCount"
+        app:layout_constraintStart_toEndOf="@+id/txt_foundMinesCount"
+        app:layout_constraintTop_toTopOf="@+id/txt_foundMinesCount"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txt_numMines"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:text="@string/_0_found_mines"
+        app:layout_constraintBottom_toBottomOf="@+id/txtCoundMsg2"
+        app:layout_constraintStart_toEndOf="@+id/txtCoundMsg2"
+        app:layout_constraintTop_toTopOf="@+id/txtCoundMsg2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txt_foundMineMsg3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:text="@string/mines_miens"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_numMines"
+        app:layout_constraintStart_toEndOf="@+id/txt_numMines"
+        app:layout_constraintTop_toTopOf="@+id/txt_numMines"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

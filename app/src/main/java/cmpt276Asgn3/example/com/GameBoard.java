@@ -5,22 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 import Model.Cell;
 import Model.cellTable;
@@ -37,6 +34,8 @@ public class GameBoard extends AppCompatActivity {
 
     private Cell cell = Cell.getInstance();
 
+    private int timeScan = 0;
+    private int foundMines = 0;
     // TODO: use rand to assign mines: determine if the cell is mine;
 
     Button buttons[][] = new Button[testRow][testCol];
@@ -46,18 +45,13 @@ public class GameBoard extends AppCompatActivity {
     private cellTable setCells(int numCol, int numRow) {
         cellTable tableList = new cellTable(numCol, numRow, new ArrayList<Cell>());
         tableList.generateCell();
-        tableList.generateMine(8);
+        tableList.generateMine(OptionActivity.getNumMineSet(this));
         tableList.InitiateMineCount();
         return tableList;
     }
 
 
-
-
-
-
-
-
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,17 +63,18 @@ public class GameBoard extends AppCompatActivity {
         Toast.makeText(this, "saved optional row: " + test, Toast.LENGTH_SHORT).show();
         //testCol = OptionActivity.getGameBoardColumn(this);
 
+        // set messages for "Found %d of %d mines."
+        TextView tvTotalMines = findViewById(R.id.txt_numMines);
+        tvTotalMines.setText(Integer.toString(OptionActivity.getNumMineSet(this)));
 
         populateButtons(testRow,testCol);
 
     }
 
     private void populateButtons(int numRow, final int numCol) {
-
         TableLayout table = findViewById(R.id.TBL_gamepad);
 
         final cellTable t2 = setCells(numCol,numRow);
-
 
 
         for (int row = 0;  row < numRow; row++) {
@@ -92,7 +87,6 @@ public class GameBoard extends AppCompatActivity {
             table.addView(tableRow);
 
             for (int col = 0; col < numCol; col++){
-
 
                 final int FINAL_COL = col;
                 final int FINAL_ROW = row;
@@ -122,37 +116,38 @@ public class GameBoard extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void gridButtonClicked(int col, int row, int index, cellTable c1) {
-        Toast.makeText(this, "Button clicked: " + col + "," + row, Toast.LENGTH_SHORT).show();
 
         Button button = buttons[row][col];
         //cell button becomes an image of mine when clicking mine button.
         if(c1.getlist().get(index).getIsMine()){
             showMineImage(button);
+
+            foundMines ++;
+            updateFoundMines(foundMines);
         }
         else{
             button.setText(Integer.toString(c1.getlist().get(index).getCount()));
-        }
 
-        // Lock Button Sizes;
-//        testRow = OptionActivity.getGameBoardRow(this);
-//        testCol = OptionActivity.getGameBoardColumn(this);
+            timeScan++;
+            updateScansUsed(timeScan);
+        }
 
         lockButtonSizes(testRow, testCol);
 
-        // temp functions, delete this
-        /*setMineCells();
-
-        if (cell.getIsMine()){
-            // TODO: cell button becomes a image of mine
-            showMineImage(button);
-
-        }
-        else if (!cell.getIsMine()){
-            // TODO: cell button display number of mines left in the same row and same col.
-        }*/
     }
 
+    @SuppressLint("SetTextI18n")
+    private void updateFoundMines(int numFoundMines) {
+        TextView tvMineFound = findViewById(R.id.txt_foundMinesCount);
+        tvMineFound.setText(Integer.toString(numFoundMines));
 
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void updateScansUsed(int scan) {
+        TextView tvScan = findViewById(R.id.txt_scanCount);
+        tvScan.setText(Integer.toString(scan));
+    }
     private void showMineImage(Button button) {
         int newWidth = button.getWidth();
         int newHeight = button.getHeight();

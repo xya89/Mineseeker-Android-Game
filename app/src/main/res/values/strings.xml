@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CMPT276Asgn3</string>
-    <string name="found_0_of_8_mines">Found 0 of 8 mines.</string>
-    <string name="scans_used_0">#Scans used: 0</string>
+
+    <string name="scans_used">#Scans used: </string>
     <string name="mineseeker">Mine Seeker</string>
     <string name="by_neil_sean"><![CDATA[By Neil Ding, Sean Yang]]></string>
     <string name="help">Help</string>
@@ -37,6 +37,15 @@
     <string name="an_image_of_rust_character_playing_flute">An image of rust character playing flute</string>
     <string name="skip">Skip</string>
     <string name="menu">Menu</string>
+    <string name="game_over">Game Over</string>
+    <string name="congratulations_you_won">Congratulations! You won!</string>
+    <string name="oki">OKi</string>
+    <string name="_0">0</string>
+    <string name="find">Find</string>
+    <string name="_0_foundMines">0</string>
+    <string name="of">of</string>
+    <string name="_0_found_mines">0</string>
+    <string name="mines_miens">mines.</string>
 
 
 </resources>
