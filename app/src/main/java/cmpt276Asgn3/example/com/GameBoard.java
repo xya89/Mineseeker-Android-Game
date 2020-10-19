@@ -1,9 +1,11 @@
 package cmpt276Asgn3.example.com;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -143,6 +145,10 @@ public class GameBoard extends AppCompatActivity {
         lockButtonSizes(testRow, testCol);
         if(foundMines ==OptionActivity.getNumMineSet(this)){
             Toast.makeText(this, "you win!" + foundMines, Toast.LENGTH_SHORT).show();
+            showDialog();
+
+
+
         }
 
     }
@@ -185,5 +191,21 @@ public class GameBoard extends AppCompatActivity {
 
     public static Intent makeIntent(Context context) {
         return new Intent(context, GameBoard.class);
+    }
+    public void showDialog(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Game Over");
+        alert.setMessage("Congratulations! You won!");
+        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = MainMenu.makeIntent(GameBoard.this);
+                startActivity(intent);
+
+            }
+
+
+        });
+        alert.create().show();
     }
 }
