@@ -11,8 +11,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+/*Game Logic,
+    using a one dimensional arrayList to represent a two dimensional matrix, in order to
+*   indexing each cell*/
+
 public class cellTable implements Iterable<Cell> {
-    private List<Cell> cells = new ArrayList<>();
+
+    private List<Cell> cells;
     private int length;
     private int width;
 
@@ -46,7 +51,6 @@ public class cellTable implements Iterable<Cell> {
             cells.add(c1);
         }
     }
-
     public void generateMine(int mineNum){
         Random rand = new Random();
         //generate a array which contains all the randomly chosen mines' position index.
@@ -65,7 +69,6 @@ public class cellTable implements Iterable<Cell> {
 
     }
 
-
     public void updateMineCount(Cell c0){
         int positionClick  = cells.indexOf(c0);
         for( Cell c1 : cells ){
@@ -75,7 +78,6 @@ public class cellTable implements Iterable<Cell> {
             }
         }
     }
-
 
     @NonNull
     @Override

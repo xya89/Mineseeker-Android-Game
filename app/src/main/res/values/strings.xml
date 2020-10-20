@@ -2,7 +2,7 @@
     <string name="app_name">CMPT276Asgn3</string>
 
     <string name="scans_used">#Times searched: </string>
-    <string name="mineseeker">Mine Seeker</string>
+    <string name="mineseeker">Find the Hidden Loot!</string>
     <string name="by_neil_sean"><![CDATA[By Neil Ding, Sean Yang]]></string>
     <string name="help">Help</string>
     <string name="board_size">Board size</string>
@@ -48,6 +48,7 @@
     <string name="mines_miens">C4.</string>
     <string name="congratulations_n_t_t_t_t_t_tyou_won">Congratulations! \n\t \t\t\t\t\tYou Won!</string>
     <string name="ok">OK</string>
+    <string name="image_of_a_timed_explosives">Image of a timed explosives</string>
 
 
 </resources>

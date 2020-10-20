@@ -1,19 +1,20 @@
 package Model;
 
+/*A single cell object,
+* contains feature of a cell*/
+
 public class Cell {
 
     private boolean isMine;
-    private boolean mineisRevealed;
-    private boolean cellisRevealed;
+    private boolean mineIsRevealed;
+    private boolean cellIsRevealed;
 
-    // if the cell is not mine, then cell contains a number
     private int mineCount;
-
 
     // Add singleton support to Cell
     private static Cell instance;
     private Cell() {
-        // private to prevent anyone else from instantiating
+
     }
     public static Cell getInstance() {
         if (instance == null) {
@@ -23,10 +24,10 @@ public class Cell {
     }
 
 
-    public Cell(boolean isMine, boolean mineisRevealed, boolean cellisRevealed, int mineCount) {
+    public Cell(boolean isMine, boolean mineIsRevealed, boolean cellIsRevealed, int mineCount) {
         this.isMine = isMine;
-        this.mineisRevealed = mineisRevealed;
-        this.cellisRevealed = cellisRevealed;
+        this.mineIsRevealed = mineIsRevealed;
+        this.cellIsRevealed = cellIsRevealed;
         this.mineCount = mineCount;
     }
 
@@ -39,14 +40,17 @@ public class Cell {
         return isMine;
     }
     public void setMine() { isMine = true; }
-    public boolean getmineIsRevealed() {
-        return mineisRevealed;
+
+    public void setMineIsRevealed(boolean revealed) { mineIsRevealed = revealed; }
+    public void setCellIsRevealed(boolean revealed) {
+        cellIsRevealed = revealed;
     }
-    public boolean getcellIsRevealed() { return cellisRevealed; }
-    public void setmineIsRevealed(boolean revealed) { mineisRevealed = revealed; }
-    public void setCellisRevealed(boolean revealed) {
-        cellisRevealed = revealed;
+
+    public boolean getMineIsRevealed() {
+        return mineIsRevealed;
     }
+    public boolean getCellIsRevealed() { return cellIsRevealed; }
+
     public int getCount(){
         return mineCount;
     }

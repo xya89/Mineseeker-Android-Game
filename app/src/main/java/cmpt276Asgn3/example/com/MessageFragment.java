@@ -14,18 +14,15 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
-
+/* Display a pop-up message when the user wins the game*/
 public class MessageFragment extends AppCompatDialogFragment {
-
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        // Create the view to show
+
         View view = LayoutInflater.from(getActivity())
                 .inflate(R.layout.game_end_message_layout, null);
-
-
 
         // Create a button Listener
         Button btn = view.findViewById(R.id.btn_mesaageFragmentOK);
@@ -44,5 +41,4 @@ public class MessageFragment extends AppCompatDialogFragment {
                 .create();
 
     }
-
 }
