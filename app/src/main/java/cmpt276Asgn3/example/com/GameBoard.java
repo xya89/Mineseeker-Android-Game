@@ -138,10 +138,10 @@ public class GameBoard extends AppCompatActivity {
                     int boardRow = OptionActivity.getGameBoardRow(this);
                     int positionCell = c1.getlist().indexOf(cell2);
                     int tempRow = positionCell % boardCol;
-                    int tempCol = positionCell / boardRow;
+                    int tempCol = positionCell / boardCol;
                     Log.d("temp Row is ",Integer.toString(tempRow));
                     Log.d("temp Col is ",Integer.toString(tempCol));
-                    if(cell2.getcellIsRevealed()){
+                    if(cell2.getcellIsRevealed() && (tempRow == index%boardCol || tempCol == index/boardCol)){
 
 
                         buttons[tempCol][tempRow].setText(Integer.toString(cell2.getCount()));
