@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import Model.Cell;
 import Model.cellTable;
 
+
 public class GameBoard extends AppCompatActivity {
 
     private int timeScan = 0;
