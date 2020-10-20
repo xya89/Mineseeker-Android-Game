@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -124,20 +125,26 @@ public class GameBoard extends AppCompatActivity {
         Button button = buttons[row][col];
         //cell button becomes an image of mine when clicking mine button.
         if(c1.getlist().get(index).getIsMine()){
-            if(!c1.getlist().get(index).getIsRevealed()) {
+            if(!c1.getlist().get(index).getmineIsRevealed() ){
 
 
                 showMineImage(button);
-                c1.getlist().get(index).setRevealed(true);
+                c1.getlist().get(index).setmineIsRevealed(true);
                 foundMines++;
                 updateFoundMines(foundMines);
                 c1.updateMineCount(c1.getlist().get(index));
                 for(Cell cell2 : c1.getlist()){
-                    if(cell2.getIsRevealed()){
-                        int positionCell = c1.getlist().indexOf(cell2);
-                        int tempCol = OptionActivity.getGameBoardColumn(this);
-                        int tempRow = OptionActivity.getGameBoardRow(this);
-                        buttons[positionCell%tempCol][positionCell/tempRow].setText(Integer.toString(cell2.getCount()));
+                    int boardCol = OptionActivity.getGameBoardColumn(this);
+                    int boardRow = OptionActivity.getGameBoardRow(this);
+                    int positionCell = c1.getlist().indexOf(cell2);
+                    int tempRow = positionCell % boardCol;
+                    int tempCol = positionCell / boardRow;
+                    Log.d("temp Row is ",Integer.toString(tempRow));
+                    Log.d("temp Col is ",Integer.toString(tempCol));
+                    if(cell2.getcellIsRevealed()){
+
+
+                        buttons[tempCol][tempRow].setText(Integer.toString(cell2.getCount()));
                     }
                 }
 
@@ -145,8 +152,8 @@ public class GameBoard extends AppCompatActivity {
             }
         }
         else{
-            if(!c1.getlist().get(index).getIsRevealed()) {
-                c1.getlist().get(index).setRevealed(true);
+            if(!c1.getlist().get(index).getcellIsRevealed()) {
+                c1.getlist().get(index).setCellisRevealed(true);
                 button.setText(Integer.toString(c1.getlist().get(index).getCount()));
 
                 timeScan++;

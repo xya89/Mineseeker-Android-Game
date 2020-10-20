@@ -42,7 +42,7 @@ public class cellTable implements Iterable<Cell> {
     public void generateCell(){
         for(int i = 0; i<length*width;i++) {
 
-            Cell c1 = new Cell(false,false,0);
+            Cell c1 = new Cell(false,false,false,0);
             cells.add(c1);
         }
     }

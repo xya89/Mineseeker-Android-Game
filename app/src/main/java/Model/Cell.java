@@ -3,7 +3,8 @@ package Model;
 public class Cell {
 
     private boolean isMine;
-    private boolean isRevealed;
+    private boolean mineisRevealed;
+    private boolean cellisRevealed;
 
     // if the cell is not mine, then cell contains a number
     private int mineCount;
@@ -22,9 +23,10 @@ public class Cell {
     }
 
 
-    public Cell(boolean isMine, boolean isRevealed, int mineCount) {
+    public Cell(boolean isMine, boolean mineisRevealed, boolean cellisRevealed, int mineCount) {
         this.isMine = isMine;
-        this.isRevealed = isRevealed;
+        this.mineisRevealed = mineisRevealed;
+        this.cellisRevealed = cellisRevealed;
         this.mineCount = mineCount;
     }
 
@@ -37,11 +39,13 @@ public class Cell {
         return isMine;
     }
     public void setMine() { isMine = true; }
-    public boolean getIsRevealed() {
-        return isRevealed;
+    public boolean getmineIsRevealed() {
+        return mineisRevealed;
     }
-    public void setRevealed(boolean revealed) {
-        isRevealed = revealed;
+    public boolean getcellIsRevealed() { return cellisRevealed; }
+    public void setmineIsRevealed(boolean revealed) { mineisRevealed = revealed; }
+    public void setCellisRevealed(boolean revealed) {
+        cellisRevealed = revealed;
     }
     public int getCount(){
         return mineCount;
