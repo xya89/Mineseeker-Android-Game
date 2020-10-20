@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/txtAppName"
-        android:layout_width="220dp"
-        android:layout_height="40dp"
+        android:layout_width="362dp"
+        android:layout_height="52dp"
         android:text="@string/mineseeker"
         android:textSize="36sp"
         android:textStyle="bold"
@@ -44,15 +44,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/btn_Menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/menu"
+    <ImageView
+        android:id="@+id/img_MainActivity"
+        android:contentDescription="@string/image_of_a_timed_explosives"
+        android:layout_width="254dp"
+        android:layout_height="218dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.847"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintEnd_toEndOf="@+id/txtAppName"
+        app:layout_constraintStart_toStartOf="@+id/txtAppName"
+        app:layout_constraintTop_toBottomOf="@+id/txtAppName"
+        app:layout_constraintVertical_bias="0.225"
+        app:srcCompat="@drawable/explosive_timed" />
 </androidx.constraintlayout.widget.ConstraintLayout>

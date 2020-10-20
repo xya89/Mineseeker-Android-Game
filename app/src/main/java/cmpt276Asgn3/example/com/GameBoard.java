@@ -24,16 +24,17 @@ import java.util.ArrayList;
 import Model.Cell;
 import Model.cellTable;
 
+/*GameBoard Activity:
+* UI code for the main game*/
 
 public class GameBoard extends AppCompatActivity {
 
     private int timeScan = 0;
     private int foundMines = 0;
 
-    Button buttons[][];
+    Button[][] buttons;
 
 
-    //create cellTable separately, which generates cells and mines.
     private cellTable setCells(int numCol, int numRow) {
         cellTable tableList = new cellTable(numCol, numRow, new ArrayList<Cell>());
         tableList.generateCell();
@@ -56,19 +57,17 @@ public class GameBoard extends AppCompatActivity {
         TextView tvTotalMines = findViewById(R.id.txt_numMines);
         tvTotalMines.setText(Integer.toString(OptionActivity.getNumMineSet(this)));
 
-
         populateButtons(OptionActivity.getGameBoardRow(this),OptionActivity.getGameBoardColumn(this));
     }
 
     private void populateButtons(final int numRow, final int numCol) {
         TableLayout table = findViewById(R.id.TBL_gamepad);
 
-        final cellTable t2 = setCells(numCol,numRow);
-
+        final cellTable cellTableToUse = setCells(numCol,numRow);
 
         for (int row = 0;  row < numRow; row++) {
-            TableRow tableRow = new TableRow(this);
 
+            TableRow tableRow = new TableRow(this);
             tableRow.setLayoutParams(new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.MATCH_PARENT,
                     TableLayout.LayoutParams.MATCH_PARENT,
@@ -99,12 +98,9 @@ public class GameBoard extends AppCompatActivity {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-                        gridButtonClicked(FINAL_COL,FINAL_ROW, FINAL_ROW*numCol+FINAL_COL,t2);
-
+                        gridButtonClicked(FINAL_COL,FINAL_ROW, FINAL_ROW*numCol+FINAL_COL,cellTableToUse);
                     }
                 });
-
 
                 tableRow.addView(button);
                 buttons[row][col] = button;
@@ -114,48 +110,43 @@ public class GameBoard extends AppCompatActivity {
     }
 
 
-
-
-
-
     @SuppressLint("SetTextI18n")
-    private void gridButtonClicked(int col, int row, int index, cellTable c1) {
+    private void gridButtonClicked(int col, int row, int index, cellTable cellTable) {
 
         Button button = buttons[row][col];
 
         Log.d("The size is:" , Integer.toString(button.getWidth()));
 
-        //cell button becomes an image of mine when clicking mine button.
-        if(c1.getlist().get(index).getIsMine()){
-            if(!c1.getlist().get(index).getmineIsRevealed() ){
+        if(cellTable.getlist().get(index).getIsMine()){
+            if(!cellTable.getlist().get(index).getMineIsRevealed() ){
 
                 showButtonImage(button, button.getWidth(), button.getHeight(), R.drawable.explosive_timed);
-                c1.getlist().get(index).setmineIsRevealed(true);
+
+                cellTable.getlist().get(index).setMineIsRevealed(true);
                 foundMines++;
                 updateFoundMines(foundMines);
-                c1.updateMineCount(c1.getlist().get(index));
-                for(Cell cell2 : c1.getlist()){
+
+                cellTable.updateMineCount(cellTable.getlist().get(index));
+
+                for(Cell cell2 : cellTable.getlist()){
                     int boardCol = OptionActivity.getGameBoardColumn(this);
-                    int boardRow = OptionActivity.getGameBoardRow(this);
-                    int positionCell = c1.getlist().indexOf(cell2);
+                    int positionCell = cellTable.getlist().indexOf(cell2);
                     int tempRow = positionCell % boardCol;
                     int tempCol = positionCell / boardCol;
                     Log.d("temp Row is ",Integer.toString(tempRow));
                     Log.d("temp Col is ",Integer.toString(tempCol));
-                    if(cell2.getcellIsRevealed() && (tempRow == index%boardCol || tempCol == index/boardCol)){
-
+                    if(cell2.getCellIsRevealed() && (tempRow == index%boardCol || tempCol == index/boardCol)){
 
                         buttons[tempCol][tempRow].setText(Integer.toString(cell2.getCount()));
                     }
                 }
-
-
             }
         }
+
         else{
-            if(!c1.getlist().get(index).getcellIsRevealed()) {
-                c1.getlist().get(index).setCellisRevealed(true);
-                button.setText(Integer.toString(c1.getlist().get(index).getCount()));
+            if(!cellTable.getlist().get(index).getCellIsRevealed()) {
+                cellTable.getlist().get(index).setCellIsRevealed(true);
+                button.setText(Integer.toString(cellTable.getlist().get(index).getCount()));
                 button.setTextColor(Color.WHITE);
 
                 timeScan++;
@@ -168,12 +159,9 @@ public class GameBoard extends AppCompatActivity {
         if(foundMines == OptionActivity.getNumMineSet(this)){
 
             gameFinishMessage();
-
-
         }
 
     }
-
 
     @SuppressLint("SetTextI18n")
     private void updateFoundMines(int numFoundMines) {
@@ -208,7 +196,6 @@ public class GameBoard extends AppCompatActivity {
             }
         }
     }
-
 
     private void gameFinishMessage() {
         FragmentManager manager = getSupportFragmentManager();

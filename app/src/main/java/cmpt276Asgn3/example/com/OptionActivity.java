@@ -15,7 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import Model.Cell;
-
+/* Optional Activity:
+* User can configure number of targets
+* User can configure the size of game board
+* Values of user configuration are saved in SharedPreference via save... functions*/
 public class OptionActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     public static final String NUM_CELLS_IN_ROW = "Num cells in row";
@@ -28,9 +31,9 @@ public class OptionActivity extends AppCompatActivity implements AdapterView.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_option);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // populate spinners options
         boardSizeSpinner();
         numberOfMineSpinner();
 
@@ -65,10 +68,9 @@ public class OptionActivity extends AppCompatActivity implements AdapterView.OnI
 
     }
 
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // Test code below, rewrite to functionalize this
+
         Spinner spinner = (Spinner) parent;
         ((TextView)spinner.getChildAt(0)).setTextColor(Color.WHITE);
         ((TextView)spinner.getChildAt(0)).setTextSize(16);
@@ -87,7 +89,6 @@ public class OptionActivity extends AppCompatActivity implements AdapterView.OnI
         }
     }
 
-
     private void saveGameBoardRow(int numRows) {
         SharedPreferences prefs = this.getSharedPreferences(PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -98,6 +99,7 @@ public class OptionActivity extends AppCompatActivity implements AdapterView.OnI
         SharedPreferences prefs = context.getSharedPreferences(PREFS, MODE_PRIVATE);
         return prefs.getInt(NUM_CELLS_IN_ROW, 2);
     }
+
     private void saveGameBoardColumn(int numCol) {
         SharedPreferences prefs = this.getSharedPreferences(PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -108,7 +110,6 @@ public class OptionActivity extends AppCompatActivity implements AdapterView.OnI
         SharedPreferences prefs = context.getSharedPreferences(PREFS, MODE_PRIVATE);
         return prefs.getInt(NUM_CELLS_IN_COLUMN, 2);
     }
-
 
     private void saveNumMineSet(int numMines) {
         SharedPreferences prefs = this.getSharedPreferences(PREFS, MODE_PRIVATE);
@@ -127,8 +128,6 @@ public class OptionActivity extends AppCompatActivity implements AdapterView.OnI
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
-
     public static Intent makeIntent(Context context) {
         return new Intent(context, OptionActivity.class);
     }
