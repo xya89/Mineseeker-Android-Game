@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import Model.Cell;
@@ -34,7 +36,7 @@ public class OptionActivity extends AppCompatActivity implements AdapterView.OnI
 
     }
 
-    // populate spinners
+
     private void numberOfMineSpinner() {
         // Number of mines options - spinner
         //*The following code is quoted from https://developer.android.com/guide/topics/ui/controls/spinner
@@ -68,26 +70,24 @@ public class OptionActivity extends AppCompatActivity implements AdapterView.OnI
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // Test code below, rewrite to functionalize this
         Spinner spinner = (Spinner) parent;
+        ((TextView)spinner.getChildAt(0)).setTextColor(Color.WHITE);
+        ((TextView)spinner.getChildAt(0)).setTextSize(16);
+
         if (spinner.getId() == R.id.spinner_boardSize)
         {
             String text = parent.getItemAtPosition(position).toString();
-            Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
-
             saveGameBoardRow(Integer.parseInt(text.replaceAll(" x.*", "")));
             saveGameBoardColumn(Integer.parseInt(text.replaceAll(".*x ", "")));
         }
         else if (spinner.getId() == R.id.spinner_numMines)
         {
             String text = parent.getItemAtPosition(position).toString();
-            Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
-
             saveNumMineSet(Integer.parseInt(text));
 
         }
     }
 
 
-    // Save game board sizes from options
     private void saveGameBoardRow(int numRows) {
         SharedPreferences prefs = this.getSharedPreferences(PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -109,7 +109,7 @@ public class OptionActivity extends AppCompatActivity implements AdapterView.OnI
         return prefs.getInt(NUM_CELLS_IN_COLUMN, 2);
     }
 
-    // Save number of mines from options
+
     private void saveNumMineSet(int numMines) {
         SharedPreferences prefs = this.getSharedPreferences(PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -127,7 +127,6 @@ public class OptionActivity extends AppCompatActivity implements AdapterView.OnI
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
 
 
     public static Intent makeIntent(Context context) {
