@@ -1,32 +1,33 @@
 <resources>
     <string name="app_name">CMPT276Asgn3</string>
 
-    <string name="scans_used">#Scans used: </string>
+    <string name="scans_used">#Times searched: </string>
     <string name="mineseeker">Mine Seeker</string>
     <string name="by_neil_sean"><![CDATA[By Neil Ding, Sean Yang]]></string>
     <string name="help">Help</string>
     <string name="board_size">Board size</string>
-    <string name="mines"># Mines</string>
+    <string name="mines"># Explosives</string>
     <string name = "about_authors">
         This random game is made by Neil Ding and Sean Yang, the authors are students of
         <a href="https://opencoursehub.cs.sfu.ca/bfraser/grav-cms/cmpt276/home">
             CMPT276-Introduction to Software Engineering.
         </a></string>
     <string name="game_info">
-        The goal of this game is to find all the hidden mines inside the slots.\n
-        Clicking one slot will reveal:
-        \n\t1. a mine! if the slot contains a mine;
-        \n\t2. a number! if the slot is not a mine.
-        The number indicates the remaining mines in the same row and column of the slot.
-        \nIf a mine is revealed, clicking the mine again will reveal the number of remaining mines in the same row and column as well.
-        \nWhat a nice useless boring application that really shapes and trains our skills!</string>
+        Instructions:
+        \n\nYour clan hid some explosives randomly in a matrix of small stashes to prevent getting insided,
+        \n now the clan is going to raid a nearby rival clan, you are told to get the C4s for the raiding.
+        \n\nThere will be a number or a C4 when you click a stash, the number indicates how many C4s
+        \n are in the same row and same column.
+        \n\nYour job is to find all the C4s. Good luck!
+
+    </string>
 
     <string name="game_source_citations">
         The following links are the resources used in this game:
-        \n\t <a href="https://rustlabs.com/item/land-mine">
-        Land mine image
-        </a>
-        \n\t <a href=
+        \n\t <a href="https://static.wikia.nocookie.net/play-rust/images/6/6c/Timed_Explosive_Charge_icon.png/revision/latest?cb=20151106061610">
+        Timed Explosives
+        </a>,
+        <a href=
             "https://assets.gamepur.com/wp-content/uploads/2020/05/06125314/Rust-Musical-Instruments-850x560.jpg">
         Main menu image
         </a>
@@ -39,13 +40,12 @@
     <string name="menu">Menu</string>
     <string name="game_over">Game Over</string>
     <string name="congratulations_you_won">Congratulations!You won!</string>
-    <string name="oki">OKi</string>
     <string name="_0">0</string>
     <string name="find">Find</string>
     <string name="_0_foundMines">0</string>
     <string name="of">of</string>
     <string name="_0_found_mines">0</string>
-    <string name="mines_miens">mines.</string>
+    <string name="mines_miens">C4.</string>
     <string name="congratulations_n_t_t_t_t_t_tyou_won">Congratulations! \n\t \t\t\t\t\tYou Won!</string>
     <string name="ok">OK</string>
 

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 
 import Model.Cell;
 import Model.cellTable;
+
 
 public class GameBoard extends AppCompatActivity {
 
@@ -54,10 +56,11 @@ public class GameBoard extends AppCompatActivity {
         TextView tvTotalMines = findViewById(R.id.txt_numMines);
         tvTotalMines.setText(Integer.toString(OptionActivity.getNumMineSet(this)));
 
+
         populateButtons(OptionActivity.getGameBoardRow(this),OptionActivity.getGameBoardColumn(this));
     }
 
-    private void populateButtons(int numRow, final int numCol) {
+    private void populateButtons(final int numRow, final int numCol) {
         TableLayout table = findViewById(R.id.TBL_gamepad);
 
         final cellTable t2 = setCells(numCol,numRow);
@@ -78,20 +81,30 @@ public class GameBoard extends AppCompatActivity {
                 final int FINAL_ROW = row;
 
                 final Button button = new Button(this);
+
                 button.setLayoutParams(new TableRow.LayoutParams(
                         TableRow.LayoutParams.MATCH_PARENT,
                         TableRow.LayoutParams.MATCH_PARENT,
                         1.0f));
 
+
+                // Make text not clip on small buttons
                 button.setPadding(0,0,0,0);
 
+                // Set button background
+                // There is actually a bug inside but i hope you won't encounter it.
+                showButtonImage(button, 270, 270, R.drawable.stash_small);
+
+                Log.d("The size before is:" , Integer.toString(button.getWidth()));
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         gridButtonClicked(FINAL_COL,FINAL_ROW, FINAL_ROW*numCol+FINAL_COL,t2);
 
                     }
                 });
+
 
                 tableRow.addView(button);
                 buttons[row][col] = button;
@@ -100,16 +113,19 @@ public class GameBoard extends AppCompatActivity {
         }
     }
 
+
     @SuppressLint("SetTextI18n")
     private void gridButtonClicked(int col, int row, int index, cellTable c1) {
 
         Button button = buttons[row][col];
 
+        Log.d("The size is:" , Integer.toString(button.getWidth()));
+
         //cell button becomes an image of mine when clicking mine button.
         if(c1.getlist().get(index).getIsMine()){
             if(!c1.getlist().get(index).getmineIsRevealed() ){
 
-                showMineImage(button);
+                showButtonImage(button, button.getWidth(), button.getHeight(), R.drawable.explosive_timed);
                 c1.getlist().get(index).setmineIsRevealed(true);
                 foundMines++;
                 updateFoundMines(foundMines);
@@ -136,6 +152,7 @@ public class GameBoard extends AppCompatActivity {
             if(!c1.getlist().get(index).getcellIsRevealed()) {
                 c1.getlist().get(index).setCellisRevealed(true);
                 button.setText(Integer.toString(c1.getlist().get(index).getCount()));
+                button.setTextColor(Color.WHITE);
 
                 timeScan++;
                 updateScansUsed(timeScan);
@@ -143,7 +160,8 @@ public class GameBoard extends AppCompatActivity {
         }
 
         lockButtonSizes(OptionActivity.getGameBoardRow(this), OptionActivity.getGameBoardColumn(this));
-        if(foundMines ==OptionActivity.getNumMineSet(this)){
+
+        if(foundMines == OptionActivity.getNumMineSet(this)){
 
             gameFinishMessage();
 
@@ -165,11 +183,8 @@ public class GameBoard extends AppCompatActivity {
         tvScan.setText(Integer.toString(scan));
     }
 
-
-    private void showMineImage(Button button) {
-        int newWidth = button.getWidth();
-        int newHeight = button.getHeight();
-        Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.rust_landmine_png);
+    private void showButtonImage(Button button, int newWidth, int newHeight ,int sourceDrawable) {
+        Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), sourceDrawable);
         Bitmap scaleBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true);
         Resources resource = getResources();
         button.setBackground(new BitmapDrawable(resource, scaleBitmap));
