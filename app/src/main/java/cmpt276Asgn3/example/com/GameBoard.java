@@ -1,11 +1,10 @@
 package cmpt276Asgn3.example.com;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -18,7 +17,6 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,23 +25,10 @@ import Model.cellTable;
 
 public class GameBoard extends AppCompatActivity {
 
-
-    // TODO: select size of game board - must work with cell table
-    private static final int NUM_ROWS = 5;
-    private static final int NUM_COLS = 10;
-
-
-    private int testRow = 4;
-    private int testCol = 6;
-
-    private Cell cell = Cell.getInstance();
-
     private int timeScan = 0;
     private int foundMines = 0;
 
-
-
-    Button buttons[][] ;
+    Button buttons[][];
 
 
     //create cellTable separately, which generates cells and mines.
@@ -64,10 +49,6 @@ public class GameBoard extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         buttons = new Button[OptionActivity.getGameBoardRow(this)][OptionActivity.getGameBoardColumn(this)];
-        int test = OptionActivity.getGameBoardRow(this);
-        //testCelltable();
-        Toast.makeText(this, "hello " + test, Toast.LENGTH_SHORT).show();
-        //testCol = OptionActivity.getGameBoardColumn(this);
 
         // set messages for "Found %d of %d mines."
         TextView tvTotalMines = findViewById(R.id.txt_numMines);
@@ -123,10 +104,10 @@ public class GameBoard extends AppCompatActivity {
     private void gridButtonClicked(int col, int row, int index, cellTable c1) {
 
         Button button = buttons[row][col];
+
         //cell button becomes an image of mine when clicking mine button.
         if(c1.getlist().get(index).getIsMine()){
             if(!c1.getlist().get(index).getmineIsRevealed() ){
-
 
                 showMineImage(button);
                 c1.getlist().get(index).setmineIsRevealed(true);
@@ -161,16 +142,16 @@ public class GameBoard extends AppCompatActivity {
             }
         }
 
-        lockButtonSizes(testRow, testCol);
+        lockButtonSizes(OptionActivity.getGameBoardRow(this), OptionActivity.getGameBoardColumn(this));
         if(foundMines ==OptionActivity.getNumMineSet(this)){
-            Toast.makeText(this, "you win!" + foundMines, Toast.LENGTH_SHORT).show();
-            showDialog();
 
+            gameFinishMessage();
 
 
         }
 
     }
+
 
     @SuppressLint("SetTextI18n")
     private void updateFoundMines(int numFoundMines) {
@@ -178,12 +159,13 @@ public class GameBoard extends AppCompatActivity {
         tvMineFound.setText(Integer.toString(numFoundMines));
 
     }
-
     @SuppressLint("SetTextI18n")
     private void updateScansUsed(int scan) {
         TextView tvScan = findViewById(R.id.txt_scanCount);
         tvScan.setText(Integer.toString(scan));
     }
+
+
     private void showMineImage(Button button) {
         int newWidth = button.getWidth();
         int newHeight = button.getHeight();
@@ -208,23 +190,15 @@ public class GameBoard extends AppCompatActivity {
         }
     }
 
+
+    private void gameFinishMessage() {
+        FragmentManager manager = getSupportFragmentManager();
+        MessageFragment dialog = new MessageFragment();
+        dialog.show(manager, "MessageDialog");
+
+    }
+
     public static Intent makeIntent(Context context) {
         return new Intent(context, GameBoard.class);
-    }
-    public void showDialog(){
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Game Over");
-        dialog.setMessage("Congratulations! You won!");
-        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent = MainMenu.makeIntent(GameBoard.this);
-                startActivity(intent);
-
-            }
-
-
-        });
-        dialog.create().show();
     }
 }
