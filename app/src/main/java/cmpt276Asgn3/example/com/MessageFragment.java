@@ -2,11 +2,14 @@ package cmpt276Asgn3.example.com;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,22 +25,24 @@ public class MessageFragment extends AppCompatDialogFragment {
         View view = LayoutInflater.from(getActivity())
                 .inflate(R.layout.game_end_message_layout, null);
 
+
+
         // Create a button Listener
-        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+        Button btn = view.findViewById(R.id.btn_mesaageFragmentOK);
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Log messages for testing
-                Log.i("TAG", "You clicked th dialog button");
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MainMenu.class);
+                startActivity(intent);
             }
-        };
+        });
 
 
         // Build the alert dialog
         return new AlertDialog.Builder(getActivity())
-                .setTitle("Changing the message")
                 .setView(view)
-                .setPositiveButton(android.R.string.ok, listener)
                 .create();
 
     }
+
 }

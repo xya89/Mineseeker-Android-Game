@@ -38,7 +38,7 @@
     <string name="skip">Skip</string>
     <string name="menu">Menu</string>
     <string name="game_over">Game Over</string>
-    <string name="congratulations_you_won">Congratulations! You won!</string>
+    <string name="congratulations_you_won">Congratulations!You won!</string>
     <string name="oki">OKi</string>
     <string name="_0">0</string>
     <string name="find">Find</string>
@@ -46,6 +46,8 @@
     <string name="of">of</string>
     <string name="_0_found_mines">0</string>
     <string name="mines_miens">mines.</string>
+    <string name="congratulations_n_t_t_t_t_t_tyou_won">Congratulations! \n\t \t\t\t\t\tYou Won!</string>
+    <string name="ok">OK</string>
 
 
 </resources>
